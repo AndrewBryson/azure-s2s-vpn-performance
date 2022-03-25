@@ -2,7 +2,7 @@
 Test Azure site-to-site (S2S) VPN latency and throughput.  This test uses 2 Azure regions (UK West, UK South) to simulate likely results if using VPN on top of an Azure ExpressRoute, i.e. {ExpressRoute POP} <--> {Azure Region}.
 
 Scenarios tested are:
-1. Cross-region latency and throughput using site-to-site VPN.  VPN is active/passive.
+1. Cross-region latency and throughput using site-to-site VPN.  VPN SKU is `VpnGw2AZ` running active/passive.
 2. Cross-region latency and throughput using public IPs (PIP) only, no VPN.
 3. Site-to-site VPN latency with concurrent load test.  VPN is active/passive.
 
@@ -75,6 +75,8 @@ Observation:
 
 ### Latency Summary
 - Result taken from a single execution of 101 seconds.
+- Test run in [sockperf ping-pong](https://www.systutorials.com/docs/linux/man/3-sockperf/#lbAH) mode, leaving load testing to `iperf`.
+- This means the total Sent Messages compared to the above scenarios is lower.
 - Raw command output [here](/results/tools-output/concurrent-results.txt)
 
 Sent Messages | Round trip time | 50th % | 75th % | 90th % |  99th % | 99.9th |
