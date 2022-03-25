@@ -1,0 +1,44 @@
+Concurrent sockperf ping-pong latency test with 1Gbps iperf load test.
+
+
+sockperf
+
+$ ./sockperf-client-start-docker.sh pp -i $(dig +short south-private) --tcp --time 101 --full-rtt
+sockperf: == version #3.7-8.git7ac842d55281 ==
+sockperf[CLIENT] send on:sockperf: using recvfrom() to block on socket(s)
+
+[ 0] IP = 10.1.2.4        PORT = 11111 # TCP
+sockperf: Warmup stage (sending a few dummy messages)...
+sockperf: Starting test...
+sockperf: Start sleep for 101 seconds
+sockperf: Test end (interrupted by signal 10)
+sockperf: Test ended
+sockperf: [Total Run] RunTime=101.000 sec; Warm up time=400 msec; SentMessages=14674; ReceivedMessages=14673
+sockperf: ========= Printing statistics for Server No: 0
+sockperf: [Valid Duration] RunTime=100.548 sec; SentMessages=14602; ReceivedMessages=14602
+sockperf: ====> avg-rtt=6885.637 (std-dev=2870.387)
+sockperf: # dropped messages = 0; # duplicated messages = 0; # out-of-order messages = 0
+sockperf: Summary: Round trip is 6885.637 usec
+sockperf: Total 14602 observations; each percentile contains 146.02 observations
+sockperf: ---> <MAX> observation = 157023.497
+sockperf: ---> percentile 99.999 = 157023.497
+sockperf: ---> percentile 99.990 = 83247.560
+sockperf: ---> percentile 99.900 = 46318.846
+sockperf: ---> percentile 99.000 = 15453.520
+sockperf: ---> percentile 90.000 = 8009.918
+sockperf: ---> percentile 75.000 = 6667.737
+sockperf: ---> percentile 50.000 = 6356.925
+sockperf: ---> percentile 25.000 = 6168.078
+sockperf: ---> <MIN> observation = 6017.998
+
+
+iperf
+
+...
+[  5] 197.00-198.00 sec   119 MBytes  1.00 Gbits/sec    0   1.16 MBytes
+[  5] 198.00-199.00 sec   119 MBytes  1.00 Gbits/sec    0   1.17 MBytes
+[  5] 199.00-200.00 sec   119 MBytes   999 Mbits/sec    0   1.18 MBytes
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-200.00 sec  23.3 GBytes  1000 Mbits/sec  3119             sender
+[  5]   0.00-200.01 sec  23.3 GBytes  1000 Mbits/sec                  receiver

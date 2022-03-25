@@ -1,0 +1,83 @@
+$ for i in {0..2}; do ./sockperf-client-start-docker.sh ul -i $(dig +short south-public) --time 101 --full-rtt --tcp --msg-size 1400 && echo $(date) && sleep 600s; done
+sockperf: == version #3.7-8.git7ac842d55281 ==
+sockperf[CLIENT] send on:sockperf: using recvfrom() to block on socket(s)
+
+[ 0] IP = 51.140.46.57    PORT = 11111 # TCP
+sockperf: Warmup stage (sending a few dummy messages)...
+sockperf: Starting test...
+sockperf: Start sleep for 101 seconds
+sockperf: Test end (interrupted by signal 10)
+sockperf: Test ended
+sockperf: [Total Run] RunTime=101.000 sec; Warm up time=400 msec; SentMessages=1010000; ReceivedMessages=10099
+sockperf: ========= Printing statistics for Server No: 0
+sockperf: [Valid Duration] RunTime=100.532 sec; SentMessages=1005301; ReceivedMessages=10054
+sockperf: ====> avg-rtt=2503.011 (std-dev=200.809)
+sockperf: # dropped messages = 0; # duplicated messages = 0; # out-of-order messages = 0
+sockperf: Summary: Round trip is 2503.011 usec
+sockperf: Total 10054 observations; each percentile contains 100.54 observations
+sockperf: ---> <MAX> observation = 12820.731
+sockperf: ---> percentile 99.999 = 12820.731
+sockperf: ---> percentile 99.990 = 5508.384
+sockperf: ---> percentile 99.900 = 3946.164
+sockperf: ---> percentile 99.000 = 3517.123
+sockperf: ---> percentile 90.000 = 2537.742
+sockperf: ---> percentile 75.000 = 2495.016
+sockperf: ---> percentile 50.000 = 2456.719
+sockperf: ---> percentile 25.000 = 2441.871
+sockperf: ---> <MIN> observation = 2427.331
+Thu Mar 24 11:39:17 UTC 2022
+sockperf: == version #3.7-8.git7ac842d55281 ==
+sockperf[CLIENT] send on:sockperf: using recvfrom() to block on socket(s)
+
+[ 0] IP = 51.140.46.57    PORT = 11111 # TCP
+sockperf: Warmup stage (sending a few dummy messages)...
+sockperf: Starting test...
+sockperf: Start sleep for 101 seconds
+sockperf: Test end (interrupted by signal 10)
+sockperf: Test ended
+sockperf: [Total Run] RunTime=101.000 sec; Warm up time=400 msec; SentMessages=1010001; ReceivedMessages=10099
+sockperf: ========= Printing statistics for Server No: 0
+sockperf: [Valid Duration] RunTime=100.536 sec; SentMessages=1005301; ReceivedMessages=10054
+sockperf: ====> avg-rtt=5873.752 (std-dev=197.207)
+sockperf: # dropped messages = 0; # duplicated messages = 0; # out-of-order messages = 0
+sockperf: Summary: Round trip is 5873.752 usec
+sockperf: Total 10054 observations; each percentile contains 100.54 observations
+sockperf: ---> <MAX> observation = 12130.250
+sockperf: ---> percentile 99.999 = 12130.250
+sockperf: ---> percentile 99.990 = 11711.136
+sockperf: ---> percentile 99.900 = 7268.965
+sockperf: ---> percentile 99.000 = 6968.692
+sockperf: ---> percentile 90.000 = 5910.671
+sockperf: ---> percentile 75.000 = 5853.183
+sockperf: ---> percentile 50.000 = 5828.308
+sockperf: ---> percentile 25.000 = 5821.373
+sockperf: ---> <MIN> observation = 5810.329
+Thu Mar 24 11:51:02 UTC 2022
+sockperf: == version #3.7-8.git7ac842d55281 ==
+sockperf[CLIENT] send on:sockperf: using recvfrom() to block on socket(s)
+
+[ 0] IP = 51.140.46.57    PORT = 11111 # TCP
+sockperf: Warmup stage (sending a few dummy messages)...
+sockperf: Starting test...
+sockperf: Start sleep for 101 seconds
+sockperf: Test end (interrupted by signal 10)
+sockperf: Test ended
+sockperf: [Total Run] RunTime=101.001 sec; Warm up time=400 msec; SentMessages=1009998; ReceivedMessages=10099
+sockperf: ========= Printing statistics for Server No: 0
+sockperf: Test end (interrupted by signal 2)
+sockperf: [Valid Duration] RunTime=100.517 sec; SentMessages=1005101; ReceivedMessages=10052
+sockperf: ====> avg-rtt=5329.021 (std-dev=107.571)
+sockperf: # dropped messages = 0; # duplicated messages = 0; # out-of-order messages = 0
+sockperf: Summary: Round trip is 5329.021 usec
+sockperf: Total 10052 observations; each percentile contains 100.52 observations
+sockperf: ---> <MAX> observation = 9856.136
+sockperf: ---> percentile 99.999 = 9856.136
+sockperf: ---> percentile 99.990 = 9759.208
+sockperf: ---> percentile 99.900 = 6352.765
+sockperf: ---> percentile 99.000 = 5715.164
+sockperf: ---> percentile 90.000 = 5378.650
+sockperf: ---> percentile 75.000 = 5323.378
+sockperf: ---> percentile 50.000 = 5311.373
+sockperf: ---> percentile 25.000 = 5295.617
+sockperf: ---> <MIN> observation = 5277.510
+Thu Mar 24 12:02:46 UTC 2022
