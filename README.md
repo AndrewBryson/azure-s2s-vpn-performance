@@ -1,9 +1,9 @@
 # Purpose
-Test Azure site-to-site (S2S) VPN latency and throughput.  This test uses 2 Azure regions (UK West, UK South) to simulate likely results if using VPN on top of an Azure ExpressRoute, i.e. {ExpressRoute POP} <--> {Azure Region}.
+Test Azure site-to-site (S2S) VPN latency.  This test uses 2 Azure regions (UK West, UK South) to simulate results if using VPN on top of an Azure ExpressRoute, i.e. {ExpressRoute POP} <--> {Azure Region}.
 
 Scenarios tested are:
-1. Cross-region latency and throughput using site-to-site VPN.  VPN SKU is `VpnGw2AZ` running active/passive.
-2. Cross-region latency and throughput using public IPs (PIP) only, no VPN.
+1. Cross-region latency using site-to-site VPN.  VPN SKU is `VpnGw2AZ` running active/passive.
+2. Cross-region latency using public IPs (PIP) only, no VPN.
 3. Site-to-site VPN latency with concurrent load test.  VPN is active/passive.
 
 # Configuration
@@ -11,7 +11,7 @@ Scenarios tested are:
 ## Approach
 Using Docker-based tools, the tests mimic the guidance found here: https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-validate-throughput-to-vnet
 
-## Tools.
+## Tools
 - Latency test with sockperf: https://hub.docker.com/r/sagoel/sockperf.  Uses [sockperf under-load](https://www.systutorials.com/docs/linux/man/3-sockperf/#lbAH) mode to measure latency with high load applied.
 - Throughput test with iperf: https://hub.docker.com/r/networkstatic/iperf3
 - Ubuntu 20.04, running on D2v5 VMs, with Accelerated Networking enabled
@@ -23,7 +23,7 @@ Convenience scripts for running the above tools with Docker can be found in the 
 ## Scenario 1 - site-to-site VPN
 ![S2S](/images/s2s.png)
 
-### Latency Summary
+### Summary
 - Results taken over 3 executions, each 101 seconds in duration.
 - 10 minute sleep between executions.
 - Raw command output [here](/results/tools-output/sockperf-results-private.txt)
@@ -48,7 +48,7 @@ Observation:
 ## Scenario 2 - PIP to PIP (no VPN)
 ![PIP-no-VPN](/images/pip.png)
 
-### Latency Summary
+### Summary
 - Results taken over 3 executions of 101 seconds.
 - 10 minute sleep between executions.
 - Raw command output [here](/results/tools-output/sockperf-results-public.txt)
@@ -87,7 +87,7 @@ Observations:
 - Throughput as measured `sockperf` Sent Messages is much lower with the concurrent `iperf` test.
 - Latency remains pretty good until 99th+ percentiles.
 
-### iperf output
+### iperf output (load test throughput)
 - Single iperf thread.
 - Bitrate cap at 1Gbps (imposed by the `iperf` client).
 ```
