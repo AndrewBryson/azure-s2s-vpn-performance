@@ -2,9 +2,9 @@
 Test Azure site-to-site (S2S) VPN latency.  This test uses 2 Azure regions (UK West, UK South) to simulate results if using VPN on top of an Azure ExpressRoute, i.e. {ExpressRoute POP} <--> {Azure Region}.
 
 Scenarios tested are:
-1. Cross-region latency using site-to-site VPN.  VPN SKU is `VpnGw2AZ` running active/passive.
+1. Cross-region latency using site-to-site VPN.  VPN Gateway SKU is `VpnGw2AZ` running active/passive.
 2. Cross-region latency using public IPs (PIP) only, no VPN.
-3. Site-to-site VPN latency with concurrent load test.  VPN is active/passive.
+3. Site-to-site VPN latency with concurrent load test.
 
 # Configuration
 
@@ -13,8 +13,8 @@ Using Docker-based tools, the tests mimic the guidance found here: https://docs.
 
 ## Tools
 - Latency test with sockperf: https://hub.docker.com/r/sagoel/sockperf.  Uses [sockperf under-load](https://www.systutorials.com/docs/linux/man/3-sockperf/#lbAH) mode to measure latency with high load applied.
-- Throughput test with iperf: https://hub.docker.com/r/networkstatic/iperf3
-- Ubuntu 20.04, running on D2v5 VMs, with Accelerated Networking enabled
+- Throughput test with iperf: https://hub.docker.com/r/networkstatic/iperf3.
+- Ubuntu 20.04, running on D2v5 VMs, with Accelerated Networking enabled.
 
 Convenience scripts for running the above tools with Docker can be found in the repository.
 
@@ -26,9 +26,9 @@ Convenience scripts for running the above tools with Docker can be found in the 
 ### Summary
 - Results taken over 3 executions, each 101 seconds in duration.
 - 10 minute sleep between executions.
-- Raw command output [here](/results/tools-output/sockperf-results-private.txt)
+- Raw command output [here](/results/tools-output/sockperf-results-private.txt).
 
-| Run | Sent Messages | Round trip time | 50th % | 75th % | 90th % |  99th % | 99.9th |
+| Run | Sent Messages | Round trip time | 50th % | 75th % | 90th % |  99th % | 99.9th %|
 |--------------|--------------|-----------|-----------|-----------|-----------|-----------|-----------|
 | 1 | 1005301 | 6717us | 6192us | 6490us | 7283us | 15326us | 50342us |
 | 2 | 1005001 | 6591us | 6180us | 6449us | 7160us | 13912us | 22695us |
@@ -41,7 +41,6 @@ Observation:
 - The VPN Gateways (1 at each end) must be playing a part here.
 
 ### Egress data transfer
-- (5 minute data points)
 ![S2S data transfer](/results/images/sockperf-results-private.png)
 
 
@@ -53,7 +52,7 @@ Observation:
 - 10 minute sleep between executions.
 - Raw command output [here](/results/tools-output/sockperf-results-public.txt)
 
-| Run | Sent Messages | Round trip time | 50th % | 75th % | 90th % |  99th % | 99.9th |
+| Run | Sent Messages | Round trip time | 50th % | 75th % | 90th % |  99th % | 99.9th %|
 |--------------|--------------|-----------|-----------|-----------|-----------|-----------|-----------|
 | 1 | 1005301 | 2503us | 2456us | 2495us | 2537us | 3517us | 3946us |
 | 2 | 1005301 | 5873us | 5828us | 5853us | 5910us | 6968us | 7268us |
@@ -64,7 +63,6 @@ Observation:
 - There is no jump in latency at higher percentiles, e.g. 75th to 90th percentile.
 
 ### Egress data transfer
-- (5 minute data points)
 ![S2S data transfer](/results/images/sockperf-results-public.png)
 
 
@@ -77,9 +75,9 @@ Observation:
 - Result taken from a single execution of 101 seconds.
 - Test run in [sockperf ping-pong](https://www.systutorials.com/docs/linux/man/3-sockperf/#lbAH) mode, leaving load testing to `iperf`.
 - This means the total Sent Messages compared to the above scenarios is lower.
-- Raw command output [here](/results/tools-output/concurrent-results.txt)
+- Raw command output [here](/results/tools-output/concurrent-results.txt).
 
-Sent Messages | Round trip time | 50th % | 75th % | 90th % |  99th % | 99.9th |
+Sent Messages | Round trip time | 50th % | 75th % | 90th % |  99th % | 99.9th %|
 |--------------|-----------|-----------|-----------|-----------|-----------|-----------|
 | 14674 | 6885us | 6356us | 6667us | 8009us | 15453us | 46318us |
 
