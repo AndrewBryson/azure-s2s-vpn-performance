@@ -82,7 +82,7 @@ Sent Messages | Round trip time | 50th % | 75th % | 90th % |  99th % | 99.9th |
 | 14674 | 6885us | 6356us | 6667us | 8009us | 15453us | 46318us |
 
 Observations:
-- Through put as measured `sockperf` Sent Messages is much lower with the concurrent `iperf` test.
+- Throughput as measured `sockperf` Sent Messages is much lower with the concurrent `iperf` test.
 - Latency remains pretty good until 99th+ percentiles.
 
 ### iperf output
