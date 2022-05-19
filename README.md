@@ -109,7 +109,7 @@ An Azure VPN Gateway provisions and manages 2 VMs behind the scenes.  In the tes
 
 ### Configuration
 - Same as above: UK West and UK South; same client & server VMs.
-- S2S VPN is not connecting Virtual Networks, it's connecting Microsoft-routed public IP addresses.
+- S2S VPN is not connecting Virtual Networks, it's connecting Microsoft-routed public IP addresses with IPSec.
 - VPN Gateway SKU: [VpnGw4](https://azure.microsoft.com/en-gb/pricing/details/vpn-gateway/).
 - References:
     - https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-highlyavailable#active-active-vpn-gateways
@@ -126,8 +126,8 @@ Test run # | Thread count | Duration | Achieved aggregate throughput |
 
 I executed a bunch of other tests but the above is a fair summary.
 
-A higher throughput can be achieved by using both VPN Gateways because the Virtual Network has 2 routes to to the remote network; see below that UK West has 2 routes to UK South (`10.1.0.0/16`) through the 2 next hop IPs of the VPN Gateway VMs (`10.2.1.4`, `10.2.1.5`).
+A higher throughput can be achieved by using both VPN Gateways because the Virtual Network has 2 routes to the remote network; see below that UK West has 2 routes to UK South (`10.1.0.0/16`) through the 2 next hop IPs of the VPN Gateway VMs (`10.2.1.4`, `10.2.1.5`).
 ![S2S active active routes](/results/images/s2s-active-active-routes.png)
 
-We can see the bandwidth utilisation of both Connections (to primary and secondary public IPs of the remote VPN Gateway); here metrics showing ~2.3 Gb/s and 2.5 Gb/s.
+We can see the bandwidth utilisation of both Connections (to primary and secondary public IPs of the remote VPN Gateway); here metrics showing ~2.3 Gb/s and ~2.5 Gb/s.
 ![S2S active active connection bandwidth metrics](/results/images/s2s-active-active-connection-bandwidth-metrics.png)
