@@ -101,3 +101,33 @@ Observations:
 
 - This shows 1.00 Gbps.
 - Transferring 23 GB over the 200 second test duration.
+
+## Bonus: Throughput of an active/active S2S VPN
+
+### Outline
+An Azure VPN Gateway provisions and manages 2 VMs behind the scenes.  In the testing above the VPN was configured in an active/passive mode meaning only 1 of those VMs were being utilised.  Active/active can help achieve higher aggregate throughput by using both VMs.  In this scenario, latency was not measured, only throughput.
+
+### Configuration
+- Same as above: UK West and UK South; same client & server VMs.
+- S2S VPN is not connecting Virtual Networks, it's connecting Microsoft-routed public IP addresses.
+- VPN Gateway SKU: [VpnGw4](https://azure.microsoft.com/en-gb/pricing/details/vpn-gateway/).
+- References:
+    - https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-highlyavailable#active-active-vpn-gateways
+    - https://docs.microsoft.com/en-us/azure/vpn-gateway/active-active-portal
+
+### Results
+I consistently achieved >8Gbps using iPerf configuration of 64 threads (`iperf client --parallel 64`).  Increasing thread count (more concurrency) is important to achieve a higher bandwidth utilisation.
+
+Test run # | Thread count | Duration | Achieved aggregate throughput |
+| ---- | ---- | ---- | ---- |
+1 | 16 | 600 seconds | 6.17 Gbits/sec |
+2 | 64 | 60 seconds | 9.36 Gbits/sec |
+3 | 64 | 60 seconds |  8.28 Gbits/sec |
+
+I executed a bunch of other tests but the above is a fair summary.
+
+A higher throughput can be achieved by using both VPN Gateways because the Virtual Network has 2 routes to to the remote network; see below that UK West has 2 routes to UK South (`10.1.0.0/16`) through the 2 next hop IPs of the VPN Gateway VMs (`10.2.1.4`, `10.2.1.5`).
+![S2S active active routes](/results/images/s2s-active-active-routes.png)
+
+We can see the bandwidth utilisation of both Connections (to primary and secondary public IPs of the remote VPN Gateway); here metrics showing ~2.3 Gb/s and 2.5 Gb/s.
+![S2S active active connection bandwidth metrics](/results/images/s2s-active-active-connection-bandwidth-metrics.png)

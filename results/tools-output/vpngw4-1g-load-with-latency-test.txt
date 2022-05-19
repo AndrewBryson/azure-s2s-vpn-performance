@@ -1,0 +1,38 @@
+$ ./sockperf-client-start-docker.sh pp -i $(dig +short south-private) --tcp --time 101 --full-
+rtt
+sockperf: == version #3.7-8.git7ac842d55281 ==
+sockperf[CLIENT] send on:sockperf: using recvfrom() to block on socket(s)
+
+[ 0] IP = 10.1.2.4        PORT = 11111 # TCP
+sockperf: Warmup stage (sending a few dummy messages)...
+sockperf: Starting test...
+sockperf: Start sleep for 101 seconds
+sockperf: Test end (interrupted by signal 10)
+sockperf: Test ended
+sockperf: [Total Run] RunTime=101.000 sec; Warm up time=400 msec; SentMessages=16161; ReceivedMessages=16160
+sockperf: ========= Printing statistics for Server No: 0
+sockperf: [Valid Duration] RunTime=100.542 sec; SentMessages=16083; ReceivedMessages=16083
+sockperf: ====> avg-rtt=6251.269 (std-dev=2808.244)
+sockperf: # dropped messages = 0; # duplicated messages = 0; # out-of-order messages = 0
+sockperf: Summary: Round trip is 6251.269 usec
+sockperf: Total 16083 observations; each percentile contains 160.83 observations
+sockperf: ---> <MAX> observation = 222520.733
+sockperf: ---> percentile 99.999 = 222520.733
+sockperf: ---> percentile 99.990 = 48204.790
+sockperf: ---> percentile 99.900 = 19521.953
+sockperf: ---> percentile 99.000 = 13281.186
+sockperf: ---> percentile 90.000 = 6803.235
+sockperf: ---> percentile 75.000 = 6087.432
+sockperf: ---> percentile 50.000 = 5862.105
+sockperf: ---> percentile 25.000 = 5642.185
+sockperf: ---> <MIN> observation = 5412.874
+
+
+...
+[  5] 198.00-199.00 sec   109 MBytes   917 Mbits/sec
+[  5] 199.00-200.00 sec   127 MBytes  1.07 Gbits/sec
+[  5] 200.00-200.01 sec   830 KBytes  1.17 Gbits/sec
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-200.01 sec  23.3 GBytes   999 Mbits/sec                  receiver
+-----------------------------------------------------------
